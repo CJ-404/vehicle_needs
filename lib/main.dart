@@ -32,15 +32,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      print('Incrementing counter $_counter');
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -50,60 +41,60 @@ class _MyHomePageState extends State<MyHomePage> {
           appBar: AppBar(
             bottom: const TabBar(
               tabs: <Widget>[
-                Tab(icon: Icon(Icons.directions_car), text: 'Car'),
                 Tab(
-                  icon: Icon(Icons.directions_transit),
-                  text: 'sdsd',
+                    icon: Icon(
+                  Icons.home_filled,
+                  semanticLabel: 'Home',
+                  size: 28,
+                )),
+                Tab(
+                  icon: Icon(
+                    Icons.directions_car_filled,
+                    semanticLabel: 'Registered Vehicles',
+                    size: 28,
+                  ),
                 ),
               ],
             ),
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             title: Center(child: Text(widget.title)),
           ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text(
-                  'You have pushed the button this many times:',
-                ),
-                Text(
-                  '$_counter',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-              ],
-            ),
-          ),
-          drawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                const DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurpleAccent,
+          body: TabBarView(
+            children: [
+              Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text(
+                        'Homepage',
+                      ),
+                    ],
                   ),
-                  child: Text('Drawer Header'),
                 ),
-                ListTile(
-                  title: const Text('Item 1'),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+              ),
+              Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Center(
+                        child: Text(
+                            'All the Registered vehicles will be shown here'),
+                      ),
+                    ],
+                  ),
                 ),
-                ListTile(
-                  title: const Text('Item 2'),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+                floatingActionButton: FloatingActionButton(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  onPressed: null,
+                  tooltip: 'Register a new vehicle',
+                  child: const Icon(Icons.add),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-          ), // This trailing comma makes auto-formatting nicer for build methods.
         ),
       ),
     );

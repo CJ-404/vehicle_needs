@@ -7,14 +7,24 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
+        colorScheme: const ColorScheme.light(
+          primary: Color(0xFF6895D2),
+          secondary: Color(0xFFFDE767),
+          surface: Color(0xFFF3B95F),
+          background: Color(0xFFFFFFFF),
+          error: Color(0xFFD04848), //(0xFFB00020),
+          onPrimary: Color(0xFF000000),
+          onSecondary: Color(0xFF000000),
+          onSurface: Color(0xFF000000),
+          onBackground: Color(0xFF000000),
+          onError: Color(0xFFFFFFFF),
+          brightness: Brightness.light,
+        ),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Vehicle Needs'),
@@ -34,12 +44,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return MaterialApp(
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            bottom: const TabBar(
+            bottom: TabBar(
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelColor: theme.colorScheme.onPrimary,
               tabs: <Widget>[
                 Tab(
                     icon: Icon(
@@ -56,7 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            backgroundColor: theme.colorScheme.surface,
+            foregroundColor: theme.colorScheme.onSurface,
             title: Center(child: Text(widget.title)),
           ),
           body: TabBarView(
@@ -86,8 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 floatingActionButton: FloatingActionButton(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  backgroundColor: theme.colorScheme.surface,
+                  foregroundColor: theme.colorScheme.onSurface,
                   onPressed: null,
                   tooltip: 'Register a new vehicle',
                   child: const Icon(Icons.add),

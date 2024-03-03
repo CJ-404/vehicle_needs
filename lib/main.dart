@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_needs/home_page.dart';
+import 'package:vehicle_needs/vehicles_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +46,7 @@ class MainRouter extends StatefulWidget {
 class _MainRouterState extends State<MainRouter> {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final ThemeData themeData = Theme.of(context);
 
     return MaterialApp(
       home: DefaultTabController(
@@ -53,7 +55,7 @@ class _MainRouterState extends State<MainRouter> {
           appBar: AppBar(
             bottom: TabBar(
               indicatorSize: TabBarIndicatorSize.tab,
-              labelColor: theme.colorScheme.onPrimary,
+              labelColor: themeData.colorScheme.onPrimary,
               tabs: <Widget>[
                 Tab(
                     icon: Icon(
@@ -70,43 +72,17 @@ class _MainRouterState extends State<MainRouter> {
                 ),
               ],
             ),
-            backgroundColor: theme.colorScheme.surface,
-            foregroundColor: theme.colorScheme.onSurface,
+            backgroundColor: themeData.colorScheme.surface,
+            foregroundColor: themeData.colorScheme.onSurface,
             title: Center(child: Text(widget.title)),
           ),
           body: TabBarView(
             children: [
-              Scaffold(
-                body: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const Text(
-                        'Homepage',
-                      ),
-                    ],
-                  ),
-                ),
+              HomePage(
+                themeData: themeData,
               ),
-              Scaffold(
-                body: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const Center(
-                        child: Text(
-                            'All the Registered vehicles will be shown here'),
-                      ),
-                    ],
-                  ),
-                ),
-                floatingActionButton: FloatingActionButton(
-                  backgroundColor: theme.colorScheme.surface,
-                  foregroundColor: theme.colorScheme.onSurface,
-                  onPressed: null,
-                  tooltip: 'Register a new vehicle',
-                  child: const Icon(Icons.add),
-                ),
+              VehiclesPage(
+                themeData: themeData,
               ),
             ],
           ),

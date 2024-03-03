@@ -27,21 +27,21 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Vehicle Needs'),
+      home: const MainRouter(title: 'Vehicle Needs'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class MainRouter extends StatefulWidget {
+  const MainRouter({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainRouter> createState() => _MainRouterState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MainRouterState extends State<MainRouter> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
